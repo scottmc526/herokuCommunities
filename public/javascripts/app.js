@@ -1,8 +1,12 @@
-var app = angular.module('herokuCommunities', ['ngRoute']);
+var app = angular.module('herokuCommunities', ['auth0.lock', 'angular-jwt', 'ui.router']);
 
-app.config(function($routeProvider) {
-  // $routeProvider
-  // .when('/', {
-  //   controller: 'loginController'
-  // })
+app.config(function($stateProvider, lockProvider, $urlRouterProvider) {
+  $stateProvider
+  .state('login', {
+    url:'/',
+    controller: 'loginController',
+    templateUrl: 'partials/login.html'
+  })
+
+
 })
