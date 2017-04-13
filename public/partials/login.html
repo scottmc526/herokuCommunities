@@ -1,1 +1,33 @@
-<h1>login stuff</h1>
+<div class='container'>
+  <div>
+    <h1>Heroku Communities</h1>
+    <form>
+      <input class='form-control' type='text' ng-model='email' ng-show='emailField' placeholder='Enter email'>
+      <button class='btn btn-success' ng-show='emailField' ng-click='checkUsername()' type='submit'>Submit</button>
+    </form>
+  </div>
+  <div ng-show='firstTimeUser'>
+    <h4>Hello {{name}}, please create a password:</h4>
+    <form>
+      <input class='form-control' type='password' ng-model='newPasswordOne' placeholder="Set Password">
+      <br>
+      <input class='form-control' type='password' ng-model='newPasswordTwo' placeholder="Retype Password">
+      <button class='btn btn-warning' ng-click='setPassword()' type='submit'>Login</button>
+    </form>
+    <br>
+    <p class='error'>{{errors[0]}}</p>
+  </div>
+  <div ng-show='returningUser'>
+    <h4>Welcome back, {{name}}, please enter your password:</h4>
+    <form>
+      <input class='form-control' type="password" ng-model='password' placeholder="Enter Password">
+      <br>
+      <button class='btn btn-danger' ng-click='checkPassword()' type="submit">Enter</button>
+    </form>
+    <br>
+    <p class='error'>{{errors[0]}}</p>
+  </div>
+  <div ng-show='invalidUser'>
+    <p>not in system: request info form goes here</p>
+  </div>
+</div>
