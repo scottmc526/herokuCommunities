@@ -12,7 +12,7 @@ function Contact() {
   return knex('contact');
 }
 
-router.get('/', function(req, res, next) {
+router.get('/users', function(req, res, next) {
   Contact().select().then(function(result) {
     res.json(result);
   })

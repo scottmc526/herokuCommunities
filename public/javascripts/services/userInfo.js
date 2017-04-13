@@ -1,6 +1,6 @@
 app.service('userInfo', function($http) {
   this.checkEmail = function() {
-    return $http.get('contact').then(function(response) {
+    return $http.get('users').then(function(response) {
       return response.data
     })
   }
