@@ -9,7 +9,7 @@ function Users() {
 }
 
 function Contact() {
-  return knex('contact');
+  return knex('salesforce/contact');
 }
 
 router.get('/users', function(req, res, next) {
