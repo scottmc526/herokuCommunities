@@ -24,4 +24,13 @@ router.get('/registeredUsers', function(req, res, next) {
   })
 })
 
+router.post('/registeredUsers', function(req, res, next) {
+  var user = {};
+  user.contactId = req.body.id;
+  user.username = req.body.email;
+  Users().insert(user).then(function(result) {
+    res.send('success')
+  })
+})
+
 module.exports = router;

@@ -11,6 +11,13 @@ app.service('userInfo', function($http) {
     })
   }
 
+  this.postUserInfo = function(id, email) {
+    var info = {};
+    info.id = id;
+    info.email = email;
+    return $http.post('registeredUsers/', info);
+  }
+
   // this.postPassword = function(userId, password) {
   //   var info = {};
   //   info.password = password;

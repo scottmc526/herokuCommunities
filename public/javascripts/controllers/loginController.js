@@ -14,14 +14,25 @@ app.controller('loginController', function($scope, $window, userInfo) {
           $scope.emailField = false;
           $scope.name = user.name;
           $scope.id = user.sfid;
-        } else {
-          $scope.invalidUser = true;
         }
       })
       if ($scope.id !== null && $scope.id !== undefined && $scope.id !== '') {
         userInfo.checkForReturningUser().then(function(result) {
           if (result.length === 0) {
             $scope.firstTimeUser = true;
+            userInfo.postUserInfo($scope.id, $scope.email);
+          } else {
+            result.forEach(function(user) {
+              if ($scope.id === user.contactId) {
+                if (user.password !== null && user.password !== undefined && user.password !== '') {
+                  $scope.returningUser = true;
+                } else {
+                  $scope.firstTimeUser = true;
+                }
+              } else {
+                userInfo.postUserInfo($scope.id, $scope.email);
+              }
+            })
           }
         });
       } else {
