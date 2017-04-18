@@ -12,17 +12,20 @@ app.controller('loginController', function($scope, $window, userInfo) {
       result.forEach(function(user) {
         if (user.email === $scope.email) {
           $scope.emailField = false;
-          $scope.name = user.firstName + ' ' + user.lastName;
-          $scope.id = user.salesforce_Id;
-
-          user.password === null ? $scope.firstTimeUser = true : $scope.returningUser = true;
+          $scope.name = user.name;
+          $scope.id = user.sfid;
+        } else {
+          $scope.invalidUser = true;
         }
       })
-      if ($scope.firstTimeUser === false && $scope.returningUser === false) {
+      if ($scope.id !== null && $scope.id !== undefined && $scope.id !== '') {
+        userInfo.checkForReturningUser().then(function(result) {
+          if (result.length === 0) {
+            $scope.firstTimeUser = true;
+          }
+        });
+      } else {
         $scope.invalidUser = true;
-      }
-      else {
-        $scope.invalidUser = false;
       }
     })
   };

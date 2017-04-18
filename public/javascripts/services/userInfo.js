@@ -1,7 +1,13 @@
 app.service('userInfo', function($http) {
   this.checkEmail = function() {
     return $http.get('users').then(function(response) {
-      return response.data
+      return response.data;
+    })
+  }
+
+  this.checkForReturningUser = function() {
+    return $http.get('registeredUsers').then(function(response) {
+      return response.data;
     })
   }
 

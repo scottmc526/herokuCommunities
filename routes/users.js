@@ -18,4 +18,10 @@ router.get('/users', function(req, res, next) {
   })
 });
 
+router.get('/registeredUsers', function(req, res, next) {
+  Users().select().then(function(result) {
+    res.json(result)
+  })
+})
+
 module.exports = router;
