@@ -33,4 +33,25 @@ router.post('/registeredUsers', function(req, res, next) {
   })
 })
 
+router.get('/registeredUsers/:id', function(req, res, next) {
+  Users().where('salesforce_Id', req.params.id).then(function(result) {
+    res.json(result);
+  })
+});
+
+router.put('/registeredUsers/:id', function(req, res, next) {
+  var encrypted;
+  if(req.body.password) {
+    encrypted = bcrypt.hashSync(req.body.password, 8);
+  }
+  else {
+    encrypted = null;
+  }
+  var user ={}
+  user.password = encrypted;
+
+  Users().where('contactId', req.params.id).update(user).then(function(result) {
+    res.sendStatus(200);
+  })
+})
 module.exports = router;

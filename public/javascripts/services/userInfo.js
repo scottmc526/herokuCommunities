@@ -18,11 +18,11 @@ app.service('userInfo', function($http) {
     return $http.post('registeredUsers/', info);
   }
 
-  // this.postPassword = function(userId, password) {
-  //   var info = {};
-  //   info.password = password;
-  //   return $http.put('users/' + userId, info)
-  // }
+  this.postPassword = function(id, password) {
+    var info = {};
+    info.password = password;
+    return $http.put('registeredUsers/' + id, info)
+  }
   //
   // this.checkPassword = function(userId) {
   //   return $http.get('users/' + userId);
