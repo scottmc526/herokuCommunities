@@ -12,4 +12,8 @@ app.config(function($stateProvider) {
     controller: 'loginController',
     templateUrl: 'partials/login.html'
   })
+  .state('summary', {
+    url:'/summary',
+    templateUrl: 'partials/summary.html'
+  })
 })

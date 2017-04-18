@@ -41,15 +41,10 @@ router.get('/registeredUsers/:id', function(req, res, next) {
 
 router.put('/registeredUsers/:id', function(req, res, next) {
   var encrypted;
-  if(req.body.password) {
-    encrypted = bcrypt.hashSync(req.body.password, 8);
-  }
-  else {
-    encrypted = null;
-  }
+  req.body.password ? encrypted = bcrypt.hashSync(req.body.password, 8) : encrypted = null
+
   var user ={}
   user.password = encrypted;
-
   Users().where('contactId', req.params.id).update(user).then(function(result) {
     res.sendStatus(200);
   })

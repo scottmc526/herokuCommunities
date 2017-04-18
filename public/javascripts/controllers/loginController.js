@@ -30,9 +30,14 @@ app.controller('loginController', function($scope, $window, userInfo) {
                   $scope.firstTimeUser = true;
                 }
               } else {
-                userInfo.postUserInfo($scope.id, $scope.email);
+                $scope.firstTimeUser = true;
               }
             })
+            console.log($scope.firstTimeUser);
+            console.log($scope.returningUser);
+          }
+          if ($scope.firstTimeUser) {
+            userInfo.postUserInfo($scope.id, $scope.email);
           }
         });
       } else {
