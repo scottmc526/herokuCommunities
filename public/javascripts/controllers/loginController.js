@@ -56,6 +56,7 @@ app.controller('loginController', function($scope, $window, userInfo) {
   $scope.checkPassword = function() {
     userInfo.checkPassword($scope.id).then(function(result) {
       var password = result.data[0].password;
+      console.log(password);
       if (password !== $scope.password) {
         $scope.errors.push('Invalid Password');
       }

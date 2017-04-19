@@ -23,8 +23,8 @@ app.service('userInfo', function($http) {
     info.password = password;
     return $http.put('registeredUsers/' + id, info)
   }
-  //
-  // this.checkPassword = function(userId) {
-  //   return $http.get('users/' + userId);
-  // }
+
+  this.checkPassword = function(id) {
+    return $http.get('registeredUsers/' + id);
+  }
 })

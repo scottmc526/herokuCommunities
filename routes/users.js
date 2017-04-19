@@ -34,7 +34,7 @@ router.post('/registeredUsers', function(req, res, next) {
 })
 
 router.get('/registeredUsers/:id', function(req, res, next) {
-  Users().where('salesforce_Id', req.params.id).then(function(result) {
+  Users().where('contactId', req.params.id).then(function(result) {
     res.json(result);
   })
 });
