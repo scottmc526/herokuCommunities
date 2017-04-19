@@ -3,7 +3,7 @@ var clientId = 'WqDAlwLEQvV2NqfiEaWBa7sWg9mE6A9f';
 var domain = 'app66452704.auth0.com';
 
 
-var app = angular.module('herokuCommunities', ['ui.router']);
+var app = angular.module('herokuCommunities', ['ui.router', 'ngCookies']);
 
 app.config(function($stateProvider) {
   $stateProvider
@@ -14,6 +14,7 @@ app.config(function($stateProvider) {
   })
   .state('summary', {
     url:'/summary',
+    controller: 'contactRecordController',
     templateUrl: 'partials/summary.html'
   })
 })

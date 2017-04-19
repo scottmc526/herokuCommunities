@@ -30,4 +30,8 @@ app.service('userInfo', function($http) {
     info.password = password;
     return $http.post('registeredUsers/' + id, info);
   }
+
+  this.getContactRecord = function(id) {
+    return $http.get('users/' + id);
+  }
 })

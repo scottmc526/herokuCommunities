@@ -18,6 +18,12 @@ router.get('/users', function(req, res, next) {
   })
 });
 
+router.get('/users/:id', function(req, res, next) {
+  Contact().where('sfid', req.params.id).then(function(result) {
+    res.json(result);
+  })
+})
+
 router.get('/registeredUsers', function(req, res, next) {
   Users().select().then(function(result) {
     res.json(result)
@@ -46,6 +52,7 @@ router.put('/registeredUsers/:id', function(req, res, next) {
   var user ={}
   user.password = encrypted;
   Users().where('contactId', req.params.id).update(user).then(function(result) {
+    res.cookie('user', req.params.id);
     res.sendStatus(200);
   })
 })
@@ -54,7 +61,7 @@ router.post('/registeredUsers/:id', function(req, res, next) {
   Users().where('contactId', req.params.id).then(function(result) {
     if(result) {
       if(bcrypt.compareSync(req.body.password, result[0].password)) {
-        console.log('here');
+        res.cookie('user', req.params.id)
         res.sendStatus(200);
       } else {
         res.send('invalid password')
