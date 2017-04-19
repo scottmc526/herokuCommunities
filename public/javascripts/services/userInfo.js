@@ -24,7 +24,10 @@ app.service('userInfo', function($http) {
     return $http.put('registeredUsers/' + id, info)
   }
 
-  this.checkPassword = function(id) {
-    return $http.get('registeredUsers/' + id);
+  this.checkPassword = function(id, password) {
+    var info = {};
+    info.id = id;
+    info.password = password;
+    return $http.post('registeredUsers/' + id, info);
   }
 })

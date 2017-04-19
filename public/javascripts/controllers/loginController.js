@@ -54,14 +54,11 @@ app.controller('loginController', function($scope, $window, userInfo) {
   };
 
   $scope.checkPassword = function() {
-    userInfo.checkPassword($scope.id).then(function(result) {
-      var password = result.data[0].password;
-      console.log(password);
-      if (password !== $scope.password) {
-        $scope.errors.push('Invalid Password');
-      }
-      else {
+    userInfo.checkPassword($scope.id, $scope.password).then(function(result){
+      if (result.data === 'OK') {
         $window.location.href = '/#/summary';
+      } else {
+        $scope.errors.push('invalid password');
       }
     })
   };

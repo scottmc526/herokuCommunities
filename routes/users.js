@@ -49,4 +49,17 @@ router.put('/registeredUsers/:id', function(req, res, next) {
     res.sendStatus(200);
   })
 })
+
+router.post('/registeredUsers/:id', function(req, res, next) {
+  Users().where('contactId', req.params.id).then(function(result) {
+    if(result) {
+      if(bcrypt.compareSync(req.body.password, result[0].password)) {
+        console.log('here');
+        res.sendStatus(200);
+      } else {
+        res.send('invalid password')
+      }
+    }
+  })
+})
 module.exports = router;
