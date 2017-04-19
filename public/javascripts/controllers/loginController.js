@@ -18,23 +18,19 @@ app.controller('loginController', function($scope, $window, userInfo) {
       })
       if ($scope.id !== null && $scope.id !== undefined && $scope.id !== '') {
         userInfo.checkForReturningUser().then(function(result) {
+          console.log(result.length);
           if (result.length === 0) {
             $scope.firstTimeUser = true;
             userInfo.postUserInfo($scope.id, $scope.email);
           } else {
             result.forEach(function(user) {
-              if ($scope.id === user.contactId) {
-                if (user.password !== null && user.password !== undefined && user.password !== '') {
-                  $scope.returningUser = true;
-                } else {
-                  $scope.firstTimeUser = true;
-                }
-              } else {
-                $scope.firstTimeUser = true;
+              if ($scope.id === user.contactId && user.password !== null) {
+                $scope.returningUser = true;
               }
             })
-            console.log($scope.firstTimeUser);
-            console.log($scope.returningUser);
+          }
+          if (!$scope.returningUser) {
+            $scope.firstTimeUser = true;
           }
           if ($scope.firstTimeUser) {
             userInfo.postUserInfo($scope.id, $scope.email);
